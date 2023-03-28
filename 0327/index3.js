@@ -62,7 +62,7 @@ fetchfruits()
 //  - try 블록에서 에러가 없다면, catch 블록은 건너뜀
 //  - try 블록에서 에러가 있다면, try 블록 실행이 중단
 //                                -> catch 블록 코드 실행
-/*  
+/*
 try {
   // 코드 실행 ing
   // 에러 발생시 catch 로 이동
