@@ -41,44 +41,44 @@
 
 // 실습 문제 풀이
 
-function call(name) {
-  return new Promise(function (resolve, reject) {
-    setTimeout(function () {
-      console.log(name);
-      resolve(name); // 작업 성공시 then(name)
-    }, 1000);
-  });
-}
+// function call(name) {
+//   return new Promise(function (resolve, reject) {
+//     setTimeout(function () {
+//       console.log(name);
+//       resolve(name); // 작업 성공시 then(name)
+//     }, 1000);
+//   });
+// }
 
-function back() {
-  return new Promise(function (resolve, reject) {
-    setTimeout(function () {
-      console.log("back");
-      resolve("back"); // 작업 성공시 then('back')
-    }, 1000);
-  });
-}
+// function back() {
+//   return new Promise(function (resolve, reject) {
+//     setTimeout(function () {
+//       console.log("back");
+//       resolve("back"); // 작업 성공시 then('back')
+//     }, 1000);
+//   });
+// }
 
-function hell() {
-  return new Promise(function (resolve, reject) {
-    setTimeout(function () {
-      resolve("callback hell");
-    }, 1000);
-  });
-}
+// function hell() {
+//   return new Promise(function (resolve, reject) {
+//     setTimeout(function () {
+//       resolve("callback hell");
+//     }, 1000);
+//   });
+// }
 
-// promise -> async/await
-async function exec() {
-  let name = await call("kim");
-  console.log(`${name} 반가워`);
+// // promise -> async/await
+// async function exec() {
+//   let name = await call("kim");
+//   console.log(`${name} 반가워`);
 
-  let result = await back();
-  console.log(`${result}을 실행했구나`);
+//   let result = await back();
+//   console.log(`${result}을 실행했구나`);
 
-  let msg = await hell();
-  console.log(`여기는 ${msg}`);
-}
-exec();
+//   let msg = await hell();
+//   console.log(`여기는 ${msg}`);
+// }
+// exec();
 
 // // 실습 2
 // function changeBgColor(newColor) {
@@ -115,3 +115,43 @@ exec();
 // }
 
 // exec();
+
+// 오늘 배운 거 복습하기
+
+function non(test) {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      // console.log("test");
+      resolve("test");
+    }, 1000);
+  });
+}
+
+function body() {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      // console.log("body");
+      resolve("body");
+    }, 1000);
+  });
+}
+
+function tag() {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      // console.log("tag");
+      resolve("tag");
+    }, 1000);
+  });
+}
+
+async function dong() {
+  let call1 = await non();
+  console.log(call1 + "합니다");
+  let body1 = await body();
+  console.log(body1 + "하세요");
+  let tag1 = await tag();
+  console.log(tag1 + "태그");
+}
+
+dong();
