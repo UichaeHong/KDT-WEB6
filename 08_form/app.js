@@ -1,3 +1,4 @@
+const { query } = require("express");
 const express = require("express");
 const app = express();
 const PORT = 8000;
@@ -13,19 +14,31 @@ app.use(express.json()); // json 형태로 데이터를 주고 받음
 // localhost:PORT 접속했을 때 index.ejs 를 보여주겠다
 app.get("/", function (req, res) {
   //views/index  파일을 찾아서 응답
-  const myTitle = "폼 실습을 합시다~~~~";
+  const myTitle = "폼 실습을 합시다";
   res.render("index", { title: myTitle });
 });
 
 app.get("/getForm", function (req, res) {
   //   console.log(req);
   console.log(req.query); //{id: , pw:}
-  res.send("get 요청 성공");
+
+  // res.send("get 요청 성공");
+  res.render("result", {
+    title: "get 요청 폼 결과 확인하기",
+    id: req.query.id, // id
+    pw: req.query.pw, // pw
+  });
 });
 
 app.post("/postForm", function (req, res) {
   console.log(req.body);
-  res.send("post 요청 성공");
+  // console.log(text.password);
+  // res.send("post 요청 성공");
+  res.render("result", {
+    title: "post 요청 폼 결과 확인하기",
+    id: req.body.id,
+    pw: req.body.pw,
+  });
 });
 
 app.listen(PORT, function () {
