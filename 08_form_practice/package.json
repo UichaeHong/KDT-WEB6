@@ -1,8 +1,8 @@
 {
   "name": "08_form_practice",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "실습에 대한 코드",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

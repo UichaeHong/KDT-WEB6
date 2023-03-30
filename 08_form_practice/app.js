@@ -11,14 +11,16 @@ app.use(express.json()); // json 형태로 데이터를 주고 받음
 // ==================실습 문제 1 풀기=========================================
 
 app.get("/", function (req, res) {
+  const myTitle = "폼 실습을 합시다";
   res.render("index", { title: myTitle });
 });
 app.get("/practice1", function (req, res) {
   res.render("practice1");
 });
-app.get("/practice2", function (req, res) {
+app.post("/practice2", function (req, res) {
   res.render("practice2");
 });
+
 app.get("/getForm", (req, res) => {
   console.log(req.query);
   res.render("result1", {
@@ -29,8 +31,6 @@ app.get("/getForm", (req, res) => {
     text1: req.query.text1,
   });
 });
-
-// =======================여기까지 실습 문제 풀기=============================
 
 // =======================실습 문제 2 풀기====================================
 
@@ -46,6 +46,19 @@ app.post("/postForm", (req, res) => {
     number: req.body.number,
   });
 });
+
+// app.post("/result2", function (req, res) {
+//   console.log(req, res);
+//   res.render("result2", {
+//     title: "실습 문제 2번 완료",
+//     name1: req.body.name1,
+//     test1: req.body.test1,
+//     day: req.body.day,
+//     text1: req.body.text1,
+//     color: req.body.color,
+//     number: req.body.number,
+//   });
+// });
 
 // =======================여기까지 실습 문제 풀기=============================
 app.listen(PORT, function () {
