@@ -42,13 +42,14 @@ app.use(express.json()); // json 형태로 데이터를 주고 받음
 // ==================실습 문제 1 풀기=========================================
 
 app.get("/", function (req, res) {
-  //views/index  파일을 찾아서 응답
-  const myTitle = "폼 실습을 합시다";
-  res.render("practice1", { title: myTitle });
+  res.render("index", { title: myTitle });
 });
-// app.get("/", function (req, res) {
-//   res.render("practice1");
-// });
+app.get("/practice1", function (req, res) {
+  res.render("practice1");
+});
+app.get("/practice2", function (req, res) {
+  res.render("practice2");
+});
 app.get("/getForm", (req, res) => {
   console.log(req.query);
   res.render("result1", {
