@@ -1,8 +1,8 @@
 {
   "name": "09_form_dynamic",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "동적 폼 전송 학습 코드",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
