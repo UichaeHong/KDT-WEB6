@@ -24,6 +24,18 @@ app.post("/ajax", function (req, res) {
   res.send(req.body);
 });
 
+// 2-1. /axios get 요청
+app.get("/axios", function (req, res) {
+  console.log(req.query);
+  res.send(req.query);
+});
+
+// 2-2 /axios post 요청
+app.post("/axios", function (req, res) {
+  console.log(req.body);
+  res.send(req.body);
+});
+
 app.listen(PORT, function () {
   console.log("웹 서버 실행");
   console.log(`http://localhost:${PORT}`);
