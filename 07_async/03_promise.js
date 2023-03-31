@@ -86,38 +86,38 @@
 // add -> mul -> sub 순으로 연산 필요
 
 // 1. 콜백함수로 해결하기
-// function add(n1, n2, callback) {
-//   setTimeout(function () {
-//     let result = n1 + n2;
-//     callback(result);
-//   }, 1000);
-// }
+function add(n1, n2, callback) {
+  setTimeout(function () {
+    let result = n1 + n2;
+    callback(result);
+  }, 1000);
+}
 
-// function mul(n, callback) {
-//   setTimeout(function () {
-//     let result = n * 2;
-//     callback(result);
-//   }, 700);
-// }
+function mul(n, callback) {
+  setTimeout(function () {
+    let result = n * 2;
+    callback(result);
+  }, 700);
+}
 
-// function sub(n, callback) {
-//   setTimeout(function () {
-//     let result = n - 1;
-//     callback(result);
-//   }, 500);
-// }
+function sub(n, callback) {
+  setTimeout(function () {
+    let result = n - 1;
+    callback(result);
+  }, 500);
+}
 
-// // add -> mul -> sub
+// add -> mul -> sub
 
-// add(4, 3, function (x) {
-//   console.log("1: ", x); // x = 4 + 3
-//   mul(x, function (y) {
-//     console.log("2: ", y); // y = x * 2
-//     sub(y, function (z) {
-//       console.log("3: ", z); // z = y - 1
-//     });
-//   });
-// });
+add(4, 3, function (x) {
+  console.log("1: ", x); // x = 4 + 3
+  mul(x, function (y) {
+    console.log("2: ", y); // y = x * 2
+    sub(y, function (z) {
+      console.log("3: ", z); // z = y - 1
+    });
+  });
+});
 
 // step2 . promise 체이닝 이용
 // 장점1. then 메서드 연속 사용 사능 -> 순차적인 작업 가능  / 콜백 지옥에서 탈출

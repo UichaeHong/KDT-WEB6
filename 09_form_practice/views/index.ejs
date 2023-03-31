@@ -7,9 +7,10 @@
     <title>Document</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
+
   <body>
     <h1>axios get 실습</h1>
-    <form action="/getForm" name="test" method="get">
+    <form action="/getForm" name="register" method="get">
       이름<input type="text" name="name" required />
       <fieldset>
         <input type="radio" name="gender" value="남자" />남자
@@ -47,19 +48,31 @@
       <button type="button" onclick="axiosGet();">회원가입</button>
     </form>
     <div class="result"></div>
+
+    <hr />
+
+    <p>app.js에 저장한 id는 banana이고, pw는 4321이다.</p>
+    <form name="login">
+      <label for="userId">아이디</label>
+      <input type="text" id="userId" name="userId" />
+      <label for="userPw">비밀번호</label>
+      <input type="password" id="userPw" name="userPw" />
+      <button type="button" onclick="clickLogin();">로그인</button>
+    </form>
+    <div class="login-result"></div>
+
     <script>
       const resultBox = document.querySelector(".result");
+      const loginResult = document.querySelector(".login-result");
+
       // axios get 요청 보내기
       function axiosGet() {
         console.log("click axiosGet btn");
-        const form = document.forms["test"];
+        const form = document.forms["register"];
 
         // 서버에 전송할 폼 입력값을 저장하는 객체
         const formInfo = {
           name: form.name.value,
-          //   gender: form.gender.value,
-          //   day: form.day,
-          //   text1: form.text1.value,
         };
 
         axios({
@@ -67,16 +80,49 @@
           method: "GET",
           params: formInfo, // get 요청은 params에 저장
         })
-          .then(function (reponse) {
-            console.log(reponse);
-            console.log(reponse.data);
+          .then(function (response) {
+            console.log(response);
+            console.log(response.data);
 
-            resultBox.textContent = `${reponse.data.name}님 회원가입을 완료했습니다`;
+            resultBox.textContent = `${response.data.name}님 회원가입을 완료했습니다`;
             resultBox.style.color = "green";
+            resultBox.style.fontSize = "xx-large";
           })
           .catch(function (error) {
             console.log("error", error);
           });
+      }
+
+      // 실습문제 2번
+      function clickLogin() {
+        console.log("click login btn!");
+
+        const form = document.querySelector("login");
+        const formInfo = {
+          userId: form.userId.value,
+          userPw: form.userPw.value,
+        };
+
+        axios({
+          url: "/practice2",
+          method: "POST",
+          data: formInfo,
+        }).then(function (response) {
+          console.log(response);
+          console.log(response.data);
+
+          // 로그인 성공
+          // response.data => ({ isLogin: true, userInfo: req.body });
+          // => id 님 로그인 성공 메세지
+          // 로그인 실패 => ({ isLogin: false });
+          // => 아이디 또는 패스워드 오류 메세지
+
+          if (response.data.isLogin) {
+            loginResult.textContent = `${response.data.userInfo.userId}님 로그인 성공`;
+          } else {
+            loginResult.textContent = `로그인 실패 다시 입력해주세요`;
+          }
+        });
       }
     </script>
   </body>
