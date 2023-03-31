@@ -23,9 +23,9 @@
 // ==============================================================
 // 2. 비동기 처리
 
-// function goMart() {
-//   console.log("마트에 가서 어떤 음료를 살지 고민한다");
-// }
+function goMart() {
+  console.log("마트에 가서 어떤 음료를 살지 고민한다");
+}
 
 // function pickDrink() {
 //   //3초 고민 후 선택
@@ -54,22 +54,22 @@
 //   console.log("마트에 가서 어떤 음료를 살지 고민한다");
 // }
 
-// function pickDrink(callback) {
-//   // callback 매개변수가 될 콜백함수
-//   setTimeout(function () {
-//     console.log("고민 끝");
-//     product = "제로콜라";
-//     price = 2000;
-//     callback(product, price); // 매개변수로 넘긴 콜백함수를 실행
-//   }, 3000);
-// }
+function pickDrink(callback) {
+  // callback 매개변수가 될 콜백함수
+  setTimeout(function () {
+    console.log("고민 끝");
+    product = "제로콜라";
+    price = 2000;
+    callback(product, price); // 매개변수로 넘긴 콜백함수를 실행
+  }, 3000);
+}
 
 // let product; //undefined
 // let price; //undefined
-// goMart();
-// pickDrink(function pay(product, price) {
-//   console.log(`상품명: ${product}, 가격: ${price}`);
-// });
+goMart();
+pickDrink(function pay(product, price) {
+  console.log(`상품명: ${product}, 가격: ${price}`);
+});
 
 //============================================================
 // 콜백 지옥 : 콜백 함수가 반복되어 코드의 들여쓰기가 너무 깊어짐
