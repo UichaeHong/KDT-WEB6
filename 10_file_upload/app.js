@@ -23,6 +23,19 @@ app.get("/", (req, res) => {
 // single()의 매개변수: input 의 name과 일치시키기!
 app.post("/upload", upload.single("userfile"), (req, res) => {
   console.log(req.file); // 업로드한 파일 정보
+
+  //   {
+  //     fieldname: 'userfile',                              // 폼에 정의한 name
+  //     originalname: 'fruit2.jpg',                         // 사용자가 업로드한 파일명
+  //     encoding: '7bit',                                   // 파일 인코딩 파일
+  //     mimetype: 'image/jpeg',                             // 파일 mime 타입
+  //     destination: 'uploads/',                            // 파일 저장할 경로(폴더)
+  //     filename: 'e44d32f5445f82d2c308eda934b20eb5',       // destination 에 저장된 파일명
+  //     path: 'uploads\\e44d32f5445f82d2c308eda934b20eb5',  // 업로드된 파일의 전체 경로
+  //     size: 11101                                         // 파일 크기(byte)
+  //   }
+  //   [Object: null prototype] { title: '' }
+
   console.log(req.body); // 폼에 입력한 정보
   res.send("upload 완료~!!");
 });
