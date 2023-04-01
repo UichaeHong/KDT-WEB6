@@ -9,6 +9,7 @@ const path = require("path"); // path 불러오기 (내장 모듈) => 파일, �
 //   dest: "uploads/", // dest: 업로드할 파일 경로 지정
 // });
 
+// multer 세부 설정
 const uploadDetail = multer({
   storage: multer.diskStorage({
     //diskStorage : 파일을 디스크에 저장하기 위한 모든 기능을 제공
@@ -58,6 +59,23 @@ app.post("/upload", uploadDetail.single("userfile"), (req, res) => {
   console.log(req.body); // 폼에 입력한 정보
   res.send("upload 완료~!!");
 });
+// array() : 여러 파일을 한 번에 업로드할 때 사용
+app.post("/upload/array", uploadDetail.array("userfile"), (req, res) => {
+  console.log(req.files); // [ {}, {}, {} ]
+  console.log(req.body); // {title: 'xxx'}
+  res.send("여러개 파일 업로드 완료");
+});
+
+// fileds() : 여러 파일을 각각 업로드할 때 사용
+app.post(
+  "/upload/fields",
+  uploadDetail.fields([{ name: "userfile1" }, { name: "userfile2" }]),
+  (req, res) => {
+    console.log(req.files); // {userfile1: [{}], userfile2: [{}]} 형태로 파일 정보 출력
+    console.log(req.body); // {title1: '망고', title2: '복숭아' }
+    res.send("각각 여러 파일 업로드");
+  }
+);
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
