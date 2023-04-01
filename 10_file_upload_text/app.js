@@ -47,12 +47,7 @@ app.post("/result", uploadDetail.single("profile"), (req, res) => {
   // }
   console.log(req.file.path); // 이미지 업로드된 경로
   console.log(req.body);
-  // {
-  //   userid: 'a',
-  //   password: 'aa',
-  //   username: 'a',
-  //   age: '1'
-  // }
+
   res.render("result", {
     userInfo: req.body,
     src: req.file.path,
