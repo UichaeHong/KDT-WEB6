@@ -15,7 +15,7 @@ app.use(express.json()); // json 형태로 데이터를 주고 받음
 app.get("/", function (req, res) {
   //views/index  파일을 찾아서 응답
   const myTitle = "폼 실습을 합시다";
-  res.render("index", { title: myTitle });
+  res.render("text", { title: myTitle });
 });
 
 app.get("/getForm", function (req, res) {
@@ -36,6 +36,16 @@ app.post("/postForm", function (req, res) {
     title: "post 요청 폼 결과 확인하기",
     id: req.body.id,
     pw: req.body.pw,
+  });
+});
+
+//text 파일에서 공부하려고 만든 호출
+app.get("/test", function (req, res) {
+  console.log(req.query);
+  res.render("02_result", {
+    // render 할 파일 지정
+    id: req.query.id, // test 파일에서 name : id 지정
+    pw: req.query.pw, // test 파일에서 name : pw 지정
   });
 });
 
