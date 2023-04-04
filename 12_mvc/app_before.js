@@ -45,10 +45,10 @@ app.get("/", (req, res) => {
 });
 
 // GET /comments
-// app.get("/comments", (req, res) => {
-//   console.log(comments); // 댓글 목록이 [ {}, {}, {}, {} ] 형태로 출력
-//   res.render("comments", { commentInfos: comments });
-// });
+app.get("/comments", (req, res) => {
+  console.log(comments); // 댓글 목록이 [ {}, {}, {}, {} ] 형태로 출력
+  res.render("comments", { commentInfos: comments });
+});
 
 // GET/ comment
 // GET /comment?id-6
@@ -74,6 +74,12 @@ app.get("/comment/:id", (req, res) => {
 
   res.render("comment", { commentInfo: comments[commentId - 1] });
 });
+
+// 폴더까지만 접근할 경우에는, 자동으로 index.js 파일을 찾아감. (index일 경우만)
+const indexRouter = require("./routes");
+// '/~~~~~~~~~' 모든 라우터를 /router/index.js에 정의해 놨으니
+// /routers/index.js 로 이동
+app.use("/", indexRouter);
 
 // [404 error]
 // 맨 마지막 라우트로 선언: nor 나머지 코드 무시되기 때문!!

@@ -9,14 +9,14 @@ const router = express.Router();
 // const app = express();
 // app.get
 
-// router.get("/", (req, res) => {
-//   res.render("index");
-// });
+router.get("/", (req, res) => {
+  res.render("index");
+});
 
-router.get("/", controller.main);
+// router.get("/", controller.main);
 
-router.get("/comments", controller.comments);
-router.get("/comment/:id", controller.comment);
+// router.get("/comments", controller.comments);
+// router.get("/comment/:id", controller.comment);
 
 // router.get("/comments", (req, res) => {
 //   console.log(comments); // 댓글 목록이 [ {}, {}, {}, {} ] 형태로 출력
