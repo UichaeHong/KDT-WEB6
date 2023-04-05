@@ -5,7 +5,8 @@ const Comment = require("../model/Comment");
 // }
 
 exports.main = (req, res) => {
-  res.render("index");
+  // controller는 응답을 받아서
+  res.render("index"); // index.ejs 렌더링
 };
 
 exports.comments = (req, res) => {

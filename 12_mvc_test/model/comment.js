@@ -1,30 +1,16 @@
-exports.getComments = () => {
+// 실습 1
+exports.getUserInfo = () => {
   // sql문 만들고
   // sql문을 excute(실행) 시키는 코드들
   return [
     {
-      userId: "helloworld",
-      userPw: "1234",
-      //   comment: "안녕하세요^~^",
-      //   date: "2022-10-31",
+      realId: "helloworld",
+      realPw: "1234",
     },
-    // {
-    //   id: 2,
-    //   userid: "happy",
-    //   date: "2022-11-01",
-    //   comment: "반가워유",
-    // },
-    // {
-    //   id: 3,
-    //   userid: "lucky",
-    //   date: "2022-11-02",
-    //   comment: "오 신기하군",
-    // },
-    // {
-    //   id: 4,
-    //   userid: "bestpart",
-    //   date: "2022-11-02",
-    //   comment: "첫 댓글입니당ㅎㅎ",
-    // },
   ];
 };
+
+// 선택 실습
+exports.users = `apple//1234//사과사과
+banana//4321//바나나나나
+happy//qwer1234//해피해피`;
