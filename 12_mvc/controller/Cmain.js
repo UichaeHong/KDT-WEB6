@@ -1,5 +1,5 @@
 // controller/Cmain.js
-const Comment = require("../model/comment");
+const Comment = require("../model/Comment");
 // Comment = {
 //   getComment : ()=>{}
 // }
