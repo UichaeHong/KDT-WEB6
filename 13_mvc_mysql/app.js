@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // 라우터 분리
-const indexRouter = require("/routes");
+const indexRouter = require("./routes");
 app.use("/", indexRouter);
 
 app.get("*", (req, res) => {

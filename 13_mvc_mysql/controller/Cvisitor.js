@@ -1,10 +1,10 @@
-const Visitor = require("../model/visitor");
+const Visitor = require("../model/Visitor");
 
 exports.main = (req, res) => {
   res.render("index");
 };
 
 exports.getVisitors = (req, res) => {
-  console.log(Visitor.getVisitors);
+  console.log(Visitor.getVisitors());
   res.render("visitior", { data: Visitor.getVisitors() });
 };
