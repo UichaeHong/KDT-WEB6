@@ -3,7 +3,7 @@ banana//4321//바나나나나
 happy//qwer1234//해피해피`;
 console.log(usersModel);
 
-const userDatas = usersModel.split("\n"); // \: 원 기호
+const userDatas = usersModel.split("\n");
 console.log(userDatas);
 // [
 //   'apple//1234//사과사과',
