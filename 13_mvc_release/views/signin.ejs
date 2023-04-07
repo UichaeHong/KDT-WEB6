@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include('include/include', { title: '로그인' })%>
+  <body>
+    <h1>로그인</h1>
+    <!-- 
+      [로그인] 버튼을 클릭하면 profile.ejs에서 특정 유저 정보를 보여주어야 하기 때문에 
+      userid 정보를 value에 저장(POST /user/signin 요청의 응답을 받은 후 수행)하여
+      폼(input)이 보이지 않도록 hidden 처리함
+    -->
+    <form name="form_info" action="/user/profile" method="POST">
+      <input type="hidden" name="userid" />
+    </form>
+
+    <form name="form_login">
+      <label for="userid">ID</label>
+      <input id="userid" type="text" name="userid" required /><br />
+      <label for="password">Password</label>
+      <input id="password" type="password" name="pw" required /><br />
+      <button type="button" onclick="login();">Login</button>
+    </form>
+    <div class="result"></div>
+
+    <!-- TODO: href 속성값 설정하기 -->
+    <a href="#">Register</a>
+
+    <script>
+      // TODO: [Login] 버튼 클릭시 서버에 로그인 요청하기
+      const loginResult = document.querySelector(".result");
+
+      function clickLogin() {
+        console.log("click login btn!");
+
+        const form = document.forms["login"];
+        const formInfo = {
+          userId: form.userId.value,
+          userPw: form.userPw.value,
+        };
+
+        axios({
+          method: "POST",
+          url: "/practice",
+          data: formInfo,
+        }).then(function (response) {
+          console.log(response);
+          console.log(response.data);
+
+          if (response.data.isLogin) {
+            // 로그인 성공
+            // response.data => {isLogin: true, userInfo: {…}}
+            // => id님 로그인 성공 메세지
+            loginResult.classList.add("success");
+          } else {
+            // 로그인 실패
+            // response.data => {isLogin: false}
+            // => 아이디 또는 패스워드 오류 메세지
+
+            loginResult.classList.remove("success");
+            loginResult.classList.add("error");
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -3,7 +3,7 @@
 // const User = require("../model/comment");
 
 // exports.main = (req, res) => {
-// controller는 응답을 받아서
+// // controller는 응답을 받아서
 //   res.render("index"); // index.ejs 렌더링
 // };
 

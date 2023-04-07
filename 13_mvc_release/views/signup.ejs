@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include('include/include', { title: '회원가입' })%>
+  <body>
+    <h1>회원가입</h1>
+    <form name="form_register">
+      <label for="userid">ID</label>
+      <input id="userid" type="text" name="userid" required /><br />
+      <label for="password">Password</label>
+      <input id="password" type="password" name="pw" required /><br />
+      <label for="nickname">Name </label>
+      <input id="nickname" type="text" name="name" required /><br />
+      <button type="button" onclick="register();">Register</button>
+    </form>
+    <!-- TODO: href 속성값 설정하기 -->
+    <a href="#">Login</a>
+
+    <script>
+      // TODO: [Register] 버튼 클릭시 서버에 회원가입 요청하기
+      // POST /user/signup
+      function register() {
+        console.log("click axiosGet btn");
+        const form = document.forms["form_register"];
+
+        // 서버에 전송할 폼 입력값을 저장하는 객체
+        const formInfo = {
+          name: form.name.value,
+        };
+
+        axios({
+          method: "GET",
+          url: "/signup",
+          params: formInfo, // get 요청은 params에 저장
+        })
+          .then(function (response) {
+            console.log(response);
+            console.log(response.data);
+
+            resultBox.textContent = `${response.data.name}님 회원가입을 완료했습니다`;
+            resultBox.style.color = "green";
+            resultBox.style.fontSize = "xx-large";
+          })
+          .catch(function (error) {
+            console.log("error", error);
+          });
+      }
+    </script>
+  </body>
+</html>

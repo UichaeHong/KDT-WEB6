@@ -2,6 +2,10 @@
 -- 데이터베이스 목록 보기
 SHOW databases;
 
+-- 데이터베이스 생성 
+CREATE DATABASE codingon DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+
+
 -- 데이터베이스 선택
 USE codingon;
 
@@ -24,3 +28,4 @@ SELECT * FROM visitor;
 -- 테이블 데이터 추가 (Cerate)
 INSERT INTO visitor (name, comment) VALUES("홍길동", "내가 왔다.");
 INSERT INTO visitor (name, comment) VALUES("이찬혁", "으라차차");
+INSERT INTO visitor (name, comment) VALUES("성춘향", "안뇽");
