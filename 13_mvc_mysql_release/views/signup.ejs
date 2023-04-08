@@ -13,37 +13,55 @@
       <button type="button" onclick="register();">Register</button>
     </form>
     <!-- TODO: href 속성값 설정하기 -->
-    <a href="#">Login</a>
+    <a href="/user/signin">Login</a>
 
     <script>
       // TODO: [Register] 버튼 클릭시 서버에 회원가입 요청하기
       // POST /user/signup
-      function register() {
-        console.log("click axiosGet btn");
+      async function register() {
         const form = document.forms["form_register"];
 
+        // inpu에 값이 입력 안된 경우
+        if (!form.checkValidity()) {
+          // !false =true
+          form.reportValidity();
+          return;
+        }
+
         // 서버에 전송할 폼 입력값을 저장하는 객체
-        const formInfo = {
-          name: form.name.value,
-        };
+        // const formInfo = {
+        //   name: form.name.value,
+        // };
 
-        axios({
-          method: "GET",
-          url: "/signup",
-          params: formInfo, // get 요청은 params에 저장
-        })
-          .then(function (response) {
-            console.log(response);
-            console.log(response.data);
+        await axios({
+          method: "POST",
+          url: "/user/signup",
+          data: {
+            userid: form.userid.value,
+            pw: form.pw.value,
+            name: form.name.value,
+          },
+        });
 
-            resultBox.textContent = `${response.data.name}님 회원가입을 완료했습니다`;
-            resultBox.style.color = "green";
-            resultBox.style.fontSize = "xx-large";
-          })
-          .catch(function (error) {
-            console.log("error", error);
-          });
+        // 회원가입 성공
+        // 1. alert
+        alert("회원가입 성공");
+
+        // 2. 로그인 페이지 이동
+        document.location.href = "/user/signin";
       }
+      //     .then(function (response) {
+      //       console.log(response);
+      //       console.log(response.data);
+
+      //       resultBox.textContent = `${response.data.name}님 회원가입을 완료했습니다`;
+      //       resultBox.style.color = "green";
+      //       resultBox.style.fontSize = "xx-large";
+      //     })
+      //     .catch(function (error) {
+      //       console.log("error", error);
+      //     });
+      // }
     </script>
   </body>
 </html>

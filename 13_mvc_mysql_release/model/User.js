@@ -3,23 +3,81 @@
 const mysql = require("mysql");
 
 const conn = mysql.createConnection({
-  host: "localhost", // databse 가 설치된 ip 주소
-  user: "user", // 데이터베이스 접속 계정명
-  password: "4321", // 데이터베이스 접속 비번
-  database: "codingon", // 사용할 데이터베이스 이름
+  host: "localhost",
+  user: "user",
+  password: "4321",
+  database: "codingon",
 });
 
-// database 연결
+exports.post_signup = (data, callback) => {
+  // data: req.body
+  // callback: sql문 실행 후, 할 일 함수
+  const sql = `insert into user (userid, name, pw) 
+                values ('${data.userid}', '${data.name}', '${data.pw}');`;
+  conn.query(sql, (err, rows) => {
+    if (err) {
+      throw err;
+    }
+    console.log("model post_signup >> ", rows);
+    // OkPacket {
+    //   fieldCount: 0,
+    //   affectedRows: 1,
+    //   insertId: 5,
+    //   serverStatus: 2,
+    //   warningCount: 0,
+    //   message: '',
+    //   protocol41: true,
+    //   changedRows: 0
+    // }
+    callback();
+  });
+};
 
-exports.getVisitors = (callback) => {
-  const sql = "SELECT * FROM visitor;";
+exports.post_signin = (data, callback) => {
+  const sql = `select * from user 
+                  where userid = '${data.userid}' and pw = '${data.pw}' LIMIT 1;`;
   conn.query(sql, (err, rows) => {
     if (err) {
       throw err;
     }
 
-    console.log("Visitor.js >> ", rows);
-    // => [ {}, {}, {} ]
+    console.log("model post_signin >>", rows); // [ {} ]
     callback(rows);
+  });
+};
+
+exports.post_profile = (userid, callback) => {
+  const sql = `select * from user where userid = '${userid}' LIMIT 1;`;
+  conn.query(sql, (err, rows) => {
+    if (err) {
+      throw err;
+    }
+
+    console.log("model post_profile >>", rows);
+    callback(rows);
+  });
+};
+
+exports.delete_profile = (id, callback) => {
+  const sql = `delete from user where id = '${id}';`;
+  conn.query(sql, (err, rows) => {
+    if (err) {
+      throw err;
+    }
+
+    console.log("model delete_profile >>", rows);
+    callback();
+  });
+};
+
+exports.edit_profile = (data, callback) => {
+  const sql = `update user set userid = '${data.userid}', name ='${data.name}', pw='${data.pw}' where id='${data.id}'`;
+  conn.query(sql, (err, rows) => {
+    if (err) {
+      throw err;
+    }
+
+    console.log("model edit_profile >>", rows);
+    callback();
   });
 };
