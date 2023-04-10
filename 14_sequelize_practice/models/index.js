@@ -38,5 +38,6 @@ db.Sequelize = Sequelize;
 
 // db = { sequelize: sequelize, Sequelize: Sequelize, Visitor: "xx" }
 db.Visitor = require("./Visitor")(sequelize, Sequelize);
+db.Visitor = require("./User")(sequelize, Sequelize);
 
 module.exports = db;

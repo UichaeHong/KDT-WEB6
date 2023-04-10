@@ -1,127 +1,68 @@
-// [before]
-// const Visitor = require('../model/Visitor');
-// [after]
-// models 변수 값 = models/index.js에서 export 한 db 객체
-const models = require("../models"); // models/index.js 내보내는 값
-// console.log(models);
+// TODO: 컨트롤러 코드
+const User = require("../models");
 
-// (1) GET / => localhost:PORT/
-exports.main = (req, res) => {
-  res.render("index");
+exports.signup = (req, res) => {
+  res.render("signup");
 };
-
-// (2) GET /visitor => localhost:PORT/visitor
-exports.getVisitors = async (req, res) => {
-  // [bofore] mysql db 연결!
-  // Visitor.getVisitors((result) => {
-  //   console.log('Cvisitor.js >>', result);
-  //   // => [ {}, {}, {} ]
-  //   res.render('visitor', { data: result });
-  // });
-  // => SELECT * FROM visitor;
-
-  // [after] sequelize
-  // ver1. then() 메서드 사용
-  // models.Visitor.findAll().then((result) => {
-  //   console.log('findAll >> ', result); // [ {}, {}, {}, {} ]
-  //   res.render('visitor', { data: result });
-  // });
-
-  // ver2. async/await 사용
-  const result = await models.Visitor.findAll();
-  console.log("findAll >> ", result); // [ {}, {}, {}, {} ]
-  res.render("visitor", { data: result });
+exports.signin = (req, res) => {
+  res.render("signin");
 };
+// exports.index = (req, res) => {
+//   // index 함수 정의
+//   res.render("index");
+// };
 
-// (3) POST /visitor/write
-exports.postVisitor = async (req, res) => {
-  // [before]
-  // console.log(req.body);
-  // Visitor.postVisitor(req.body, (result) => {
-  //   console.log('Cvisitor.js >>', result); // model 코드에서 데이터를 추가한 결과인 rows.insertId
-  //   res.send({ id: result, name: req.body.name, comment: req.body.comment });
-  // });
-  // => insert into visitor(name, comment) values('${data.name}', '${data.comment}');
+exports.post_signup = (req, res) => {};
+//   console.log(req.body); // 사용자가 폼에  입력한 정보
 
-  // [after]
-  const result = await models.Visitor.create({
-    name: req.body.name,
-    comment: req.body.comment,
-  });
-  console.log("create >> ", result);
-  // visitor {
-  //   dataValues: { id: 8, name: 'sean', comment: '안뇽' },
-  //   _previousDataValues: { name: 'sean', comment: '안뇽', id: 8 },
-  //   uniqno: 1,
-  //   _changed: Set(0) {},
-  //   _options: {
-  //     isNewRecord: true,
-  //     _schema: null,
-  //     _schemaDelimiter: '',
-  //     attributes: undefined,
-  //     include: undefined,
-  //     raw: undefined,
-  //     silent: undefined
-  //   },
-  //   isNewRecord: false
-  // }
-  res.send(result);
-};
+//   User.post_signup(req.body, () => {
+//     // res.end() : 데이터 없이 응답할 때 사용
+//     res.end();
+//   });
+// };
 
-// (5) DELETE /visitor/delete
-exports.deleteVisitor = async (req, res) => {
-  // [before]
-  // console.log(req.body); // { id: n }
-  // Visitor.deleteVisitor(req.body.id, (result) => {
-  //   console.log("Cvisitor.js >> ", result);
-  //   res.send("삭제 성공!!");
-  // });
+// exports.post_signin = (req, res) => {
+//   console.log(req, body); // 폼에 입력한 로그인 정보
 
-  // [after]
-  const result = await models.Visitor.destroy({
-    where: { id: req.body.id },
-  });
+//   User.post_signin(req.body, (result) => {
+//     console.log(result);
+//     // 존재하는 유저로 로그인시 -> [ {}]
+//     // 존재하지 않는 유저로 로그인시 -> [ {}]
 
-  res.end();
-};
+//     if (result.length > 0) {
+//       // 로그인 성공
+//       res.send(true);
+//     } else {
+//       // 로그인 실패
+//       res.send(false);
+//     }
+//   });
+// };
 
-exports.getVisitor = async (req, res) => {
-  // [before]
-  // console.log("*", req.query); // { id: n }
+// exports.post_profile = (req, res) => {
+//   console.log(req.body);
 
-  // Visitor.getVisitor(req.query.id, (result) => {
-  //   console.log("**", result); // model callback에서 넘겨주는 rows[0] => {}
-  //   res.send(result);
-  // });
+//   User.post_profile(req.body.userid, () => {
+//     console.log(result);
 
-  // [after]
-  const result = await models.Visitor.findOne({
-    where: { id: req.query.id },
-  });
-  console.log("findOne >>", result); // 프론트엔드한테 send를 이용해서 보냄
-  res.send(result);
-};
+//     if (result.length > 0) {
+//       res.render("profile", { data: result[0] });
+//     }
+//   });
+// };
 
-exports.patchVisitor = async (req, res) => {
-  // [before]
-  // console.log(req.body);
+// exports.delete_profile = (req, res) => {
+//   console.log(req.body);
 
-  // Visitor.patchVisitor(req.body, () => {
-  //   res.send("수정 성공!");
-  // });
+//   User.delete_profile(req.body.id, () => {
+//     res.end();
+//   });
+// };
 
-  // [after]
-  const result = await models.Visitor.update(
-    {
-      name: req.body.name,
-      comment: req.body.comment,
-    },
-    {
-      where: {
-        id: req.body.id,
-      },
-    }
-  );
-  console.log("update >>", result);
-  res.end();
-};
+// exports.edit_profile = (req, res) => {
+//   console.log(req.body);
+
+//   User.edit_profile(req.body, () => {
+//     res.end();
+//   });
+// };

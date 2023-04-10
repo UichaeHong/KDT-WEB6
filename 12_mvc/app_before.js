@@ -8,6 +8,8 @@ app.use("/static", express.static(__dirname + "/static"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// ################## model / Comment ############################
+
 // (임시) DB로부터 받아온 댓글 목록
 const comments = [
   {
@@ -36,8 +38,12 @@ const comments = [
   },
 ];
 
+// ################## model / Comment ############################
+
 // [Before] MVC 적용 전에는 app.js에서 라우트 정의
 // 단점: 라우터(경로)가 많아진다면? app.js 코드가 길어짐 -> 유지보수성 하락
+
+// ################## controller/ Cmain ############################
 
 // GET /
 app.get("/", (req, res) => {
@@ -74,6 +80,8 @@ app.get("/comment/:id", (req, res) => {
 
   res.render("comment", { commentInfo: comments[commentId - 1] });
 });
+
+// ################## controller/ Cmain ############################
 
 // 폴더까지만 접근할 경우에는, 자동으로 index.js 파일을 찾아감. (index일 경우만)
 const indexRouter = require("./routes");

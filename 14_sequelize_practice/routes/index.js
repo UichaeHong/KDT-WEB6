@@ -20,4 +20,15 @@ router.patch("/visitor/edit", controller.patchVisitor); // 하나 수정
 // DELETE /visitor/delete
 router.delete("/visitor/delete", controller.deleteVisitor); // 하나 삭제
 
+// 13_mvc_mysql_practice signup / signin
+router.get("/signup", controller.signup);
+router.post("/signup", controller.post_signup);
+
+router.get("/signin", controller.signin);
+router.post("/signin", controller.post_signin);
+
+router.post("/profile", controller.post_profile);
+router.post("/profile/edit", controller.edit_profile);
+router.post("/profile/delete", controller.delete_profile);
+
 module.exports = router;
