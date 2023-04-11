@@ -15,9 +15,9 @@ exports.post_signup = (req, res) => {
   //     res.send(true);
   //   });
 
-  // [After 1]
+  // [After 1] promise
   models.User.create({
-    // create 찾아볼 것
+    // sequelize 쿼리문 create 메서드
     userid: req.body.userid,
     name: req.body.name,
     pw: req.body.pw,
@@ -25,8 +25,8 @@ exports.post_signup = (req, res) => {
     res.send(true);
   });
 };
-// [After 2]
-//   await models.User.create({  // create 찾아볼 것
+// [After 2] async / await
+//   await models.User.create({  // sequelize 쿼리문 create 메서드
 //     userid: req.body.userid,
 //     name: req.body.name,
 //     pw: req.body.pw,
@@ -54,7 +54,7 @@ exports.post_signin = (req, res) => {
   //   });
 
   // ##############################################################################
-  // [After 1]
+  // [After 1] promise
   models.User.findOne({
     // findOne 메서드 찾아보기
     where: {
@@ -103,7 +103,7 @@ exports.post_profile = (req, res) => {
   //     }
   //   });
 
-  // [After 1]
+  // [After 1] promise
   models.User.findOne({
     where: { userid: req.body.userid }, //
   }).then((result) => {
@@ -140,7 +140,7 @@ exports.edit_profile = (req, res) => {
   //     res.send('회원정보 수정 성공!');
   //   });
 
-  // [After]
+  // [After 1] promise
   models.User.update(
     // updata(x, y) 첫번째가 바꿀 요소, 두번째가 어떤 것으로 바꿀 것인지  profile.ejs에서 profileEdit 함수
     {
@@ -155,10 +155,10 @@ exports.edit_profile = (req, res) => {
     res.send("회원정보 수정 성공!");
   });
 };
+//   // [After 2] async / await
 // exports.edit_profile = async (req, res) => {
 //   console.log(req.body);
 //
-//   // [After]
 //   const result = await models.User.update(
 //     {
 //       userid: req.body.userid,
@@ -186,14 +186,14 @@ exports.delete_profile = (req, res) => {
   //     res.send(true);
   //   });
 
-  // [After 1]
+  // [After 1] promise
   models.User.destroy({
     where: { id: req.body.id },
   }).then(() => {
     res.send("회원 탈퇴 완료!!");
   });
 };
-//   // [After 2]
+//   [After 2] async / await
 // exports.delete_profile = async (req, res) => {
 //   console.log(req.body);
 //
