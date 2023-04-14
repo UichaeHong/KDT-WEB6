@@ -38,6 +38,14 @@ function entry() {
   socket.emit("setNick", document.querySelector("#nickname").value);
 }
 
+// 닉네임 입력창에 입력 후 enter 누르면 입장하기
+function enter() {
+  if (window.event.keyCode === 13) {
+    console.log(document.querySelector("#nickname").value);
+    socket.emit("setNick", document.querySelector("#nickname").value);
+  }
+}
+
 socket.on("entrySuccess", (nick) => {
   // 1. 내 닉네임 설정
   myNick = nick;
@@ -75,6 +83,8 @@ socket.on("updateNicks", (obj) => {
 
 // [실습4] 채팅창 메세지 전송 step1
 // "send" 이벤트 전송 { 닉네임, 입력메세지 }
+// enter 키 사용시 메세지 전송
+// function enterKey() {
 function send() {
   const data = {
     myNick: myNick,
@@ -141,5 +151,62 @@ socket.on("newMessage", (data) => {
   chatList.append(div);
 
   // (선택) 메세지가 많아져서 스크롤이 생기더라도 하단 고정
-  chatList.scrollTop = chatList.scrollHeight;
+});
+
+// text창에 메세지 입력 후 enter 누르면 전송하기
+function enterkey(event) {
+  if (window.event.keyCode === 13) {
+    const data = {
+      myNick: myNick,
+      dm: document.querySelector("#nick-list").value,
+      // => select 태그에서 선택한 option 태그의 value 값
+      msg: document.querySelector("#message").value,
+    };
+    socket.emit("send", data);
+
+    document.querySelector("#message").value = "";
+  }
+}
+
+// 댓글에 좋아요 기능달기
+
+// const likeBtns = document.querySelectorAll('.likeBtn');
+
+// for (const likeBtn of likeBtns) {
+//     likeBtn.addEventListener('click', (e) => {
+//         const svgs = likeBtn.getElementsByTagName('svg');
+//         console.log("clicked" + e);
+//         const like = svgs[0];
+//         const disLike = svgs[1];
+//             if(disLike.getAttribute('display') === 'none') {
+//                 like.setAttribute('display', 'none');
+//                 disLike.setAttribute('display', 'inline-block');
+//             } else {
+//                 like.setAttribute('display', 'inline-block');
+//                 disLike.setAttribute('display', 'none');
+//             }
+//     });
+// }
+
+socket.on("onTypingUser", (data) => {
+  onTypingUser = data;
+
+  if (data.indexOf($("#userId").val()) > -1) {
+    $("#ask-typing").show();
+  } else {
+    $("#ask-typing").hide();
+  }
+  switch (list[currentRoomIdx].me) {
+    case "me":
+      if (data.indexOf($("#menteeId").val()) > -1) {
+        $("#answer-typing").show();
+      } else $("#answer-typing").hide();
+      break;
+    case "you":
+      if (data.indexOf($("#mentoId").val()) > -1) {
+        $("#answer-typing").show();
+      } else $("#answer-typing").hide();
+      break;
+  }
+  scrollDown();
 });
