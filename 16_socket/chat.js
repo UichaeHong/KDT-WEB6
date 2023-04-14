@@ -81,12 +81,35 @@ io.on("connection", (socket) => {
 
   // [실습4] 채팅창 메세지 전송 Step1
   socket.on("send", (obj) => {
-    console.log("socket on send >> ", obj); // { myNick: 'ㅁㅁ', msg: '안녕' }
+    console.log("socket on send >> ", obj); // { myNick: 'ㅁㅁ',dm:'', msg: '안녕' } // dm 추가
+    // [전체] 선택하고 전송시 -> dm: 'all'
+    // 특정 닉네임을 선택하고 전송 -> dm: socket.id
 
     // [실습4] 채팅창 메세지 전송 Step2
     // 서버에 접속한 모든 클라이언트한테 "누가 뭐라고 말했는지" 이벤트 보내기
-    const sendData = { nick: obj.myNick, msg: obj.msg };
-    io.emit("newMessage", sendData);
+    // const sendData = { nick: obj.myNick, msg: obj.msg };
+    // io.emit("newMessage", sendData);
+
+    // [실습5] DM 기능 구현
+    // 만약에 DM 메세지라면 그 특정 socket.id 에게만 메세지 전달
+    // { nick, dm, msg}
+    // 만약에 DM 메세지가 아니면 전체 공지
+    // { nick, msg}
+
+    if (obj.dm !== "all") {
+      // dm 전송
+      let dmSocketId = obj.dm; // 각 닉네임에 해당하는 socket.id
+      const sendData = { nick: obj.myNick, dm: "(비밀)", msg: obj.msg };
+
+      // 1. dm을 보내고자하는 그 socket.id한테 메세지 전송
+      io.to(dmSocketId).emit("newMessage", sendData);
+      // 2. dm을 보내고 잇는 자기자신 메세지 전송
+      socket.emit("newMessage", sendData);
+    } else {
+      // all 전송 (전체 공지)
+      const sendData = { nick: obj.myNick, msg: obj.msg };
+      io.emit("newMessage", sendData);
+    }
   });
 });
 

@@ -78,6 +78,8 @@ socket.on("updateNicks", (obj) => {
 function send() {
   const data = {
     myNick: myNick,
+    dm: document.querySelector("#nick-list").value,
+    // => select 태그에서 선택한 option 태그의 value 값
     msg: document.querySelector("#message").value,
   };
   socket.emit("send", data);
@@ -112,18 +114,32 @@ socket.on("newMessage", (data) => {
   // data 의 닉네임이 같다면, 내 채팅으로 보이게 (오른쪽 배치 == .my-chat)
   // data 의 닉네임이 다르다면, 상대방 채팅으로 보이게 (왼쪽 배치 == .other-chat)
 
-  function mssge() {
-    let message = (document.querySelector("#message").value = "");
-    let div = document.createElement("div");
+  if (myNick === data.nick) {
+    div.classList.add("my-chat");
+  } else {
+    div.classList.add("other-chat");
   }
 
-  // }
+  // [실습5] DM 기능 추가
+  if (data.dm) {
+    // data.dm -> '(속닥속닥)'
+    div.classList.add("secret-chat");
+    divChat.textContent = data.dm;
+  }
 
   // divChat의 textContent/innerText 값을 적절히 변경
   // ex. nick : msg 형태로 보이게 했음
+  // divChat.textContent = `${data.nick} : ${data.msg}`; // [실습4]
+  divChat.textContent = divChat.textContent + `${data.nick} : ${data.msg}`; // [실습5]
+  // dm; divChat.textContent = '(속닥속닥)' + 누가 : 메세지
+  // not dm; divChat.textContent = '' + 누가 : 메세지
 
   // divChat 을 div 요소에 추가
+  div.append(divChat);
+
   // div를 chatList 에 추가
+  chatList.append(div);
 
   // (선택) 메세지가 많아져서 스크롤이 생기더라도 하단 고정
+  chatList.scrollTop = chatList.scrollHeight;
 });

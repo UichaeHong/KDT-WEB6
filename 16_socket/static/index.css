@@ -1,5 +1,7 @@
 body {
   background-color: aliceblue;
+  /* display: flex;
+  justify-content: center; */
 }
 
 /* [실습2] 채팅창 UI 만들기 */
@@ -32,6 +34,10 @@ body {
 
 .other-chat div {
   background-color: white;
+}
+/* [실습5] DM 기능 */
+.secret-chat div {
+  background-color: pink;
 }
 
 /* .input {
