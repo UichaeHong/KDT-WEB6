@@ -114,17 +114,17 @@ io.on("connection", (socket) => {
 });
 
 // ======================== 타이핑 중=========================================
-socket.on("typing", (uid) => {
-  onTypingUser.push(uid);
-  onTypingUser = [...new Set(onTypingUser)];
-  io.emit("onTypingUser", onTypingUser);
-});
+// socket.on("typing", (uid) => {
+//   onTypingUser.push(uid);
+//   onTypingUser = [...new Set(onTypingUser)];
+//   io.emit("onTypingUser", onTypingUser);
+// });
 
-socket.on("notyping", (uid) => {
-  onTypingUser.indexOf(uid) != -1 &&
-    onTypingUser.splice(onTypingUser.indexOf(uid), 1);
-  io.emit("onTypingUser", onTypingUser);
-});
+// socket.on("notyping", (uid) => {
+//   onTypingUser.indexOf(uid) != -1 &&
+//     onTypingUser.splice(onTypingUser.indexOf(uid), 1);
+//   io.emit("onTypingUser", onTypingUser);
+// });
 // ======================== 타이핑 중=========================================
 
 // 주의) socket 을 사용할 때는 http.listen으로 PORT 열어야 함!!!

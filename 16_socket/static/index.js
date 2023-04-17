@@ -170,43 +170,51 @@ function enterkey(event) {
 
 // 댓글에 좋아요 기능달기
 
-// const likeBtns = document.querySelectorAll('.likeBtn');
+// background color 바꾸는 버튼
 
-// for (const likeBtn of likeBtns) {
-//     likeBtn.addEventListener('click', (e) => {
-//         const svgs = likeBtn.getElementsByTagName('svg');
-//         console.log("clicked" + e);
-//         const like = svgs[0];
-//         const disLike = svgs[1];
-//             if(disLike.getAttribute('display') === 'none') {
-//                 like.setAttribute('display', 'none');
-//                 disLike.setAttribute('display', 'inline-block');
-//             } else {
-//                 like.setAttribute('display', 'inline-block');
-//                 disLike.setAttribute('display', 'none');
-//             }
-//     });
-// }
+// let green = document.querySelector("#modal");
 
-socket.on("onTypingUser", (data) => {
-  onTypingUser = data;
+let count = 0;
 
-  if (data.indexOf($("#userId").val()) > -1) {
-    $("#ask-typing").show();
+function green() {
+  count++;
+  // if (count % 2 === 0) {
+  //   document.querySelector(".chat-list").style.backgroundColor = "blue";
+  // }
+
+  if (count % 2 === 1) {
+    (document.querySelector(".chat-list").style.backgroundColor =
+      "mediumseagreen"),
+      (document.querySelector("body").style.backgroundColor = "white");
   } else {
-    $("#ask-typing").hide();
+    document.querySelector(".chat-list").style.backgroundColor = "deepskyblue";
   }
-  switch (list[currentRoomIdx].me) {
-    case "me":
-      if (data.indexOf($("#menteeId").val()) > -1) {
-        $("#answer-typing").show();
-      } else $("#answer-typing").hide();
-      break;
-    case "you":
-      if (data.indexOf($("#mentoId").val()) > -1) {
-        $("#answer-typing").show();
-      } else $("#answer-typing").hide();
-      break;
-  }
-  scrollDown();
-});
+}
+
+function white() {
+  (document.querySelector(".chat-list").style.backgroundColor = "white"),
+    (document.querySelector("body").style.backgroundColor = "mediumseagreen");
+}
+
+// let click = document.querySelector("#modal");
+
+// click.onclick = function () {
+//   document.querySelector("body").style.backgroundColor = "red";
+// };
+
+// click.onclick = function () {
+//   document.querySelector("body").style.backgroundColor = "green";
+// };
+
+// setTimeout(function () {
+//   document.querySelector("body").style.backgroundColor = "orange";
+//   setTimeout(function () {
+//     document.querySelector("body").style.backgroundColor = "yellow";
+//     setTimeout(function () {
+//       document.querySelector("body").style.backgroundColor = "green";
+//       setTimeout(function () {
+//         document.querySelector("body").style.backgroundColor = "blue";
+//       }, 1000);
+//     }, 1000);
+//   }, 1000);
+// }, 1000);
