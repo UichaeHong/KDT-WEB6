@@ -90,20 +90,18 @@ import ClassPractice from "./Classpractice";
 import FunctionComponent from "./FunctionComponent";
 import Functionpractice from "./Functionpractice";
 import Hicomponent from "./Hicomponent";
+import Prop1 from "./Prop1";
+import Prop2 from "./Prop2";
+
 function App() {
   const test = () => {
     // console.log("콘솔체크");
   };
   return (
     <>
-      {/* <ClassComponent name={"홍길동"} age={13} func={test} /> */}
-      {/* <ClassComponent name="성춘향" age="11" /> */}
-      {/* <ClassComponent /> */}
-      {/* <FunctionComponent name="둘리" age="300" />  */}
-      {/* <FunctionComponent /> */}
       <Hicomponent />
-      {/* <ClassPractice />
-      <Functionpractice /> */}
+      <Prop1 />
+      <Prop2 />
     </>
   );
 }

@@ -14,4 +14,4 @@ setInterval(() => {
       <App />
     </React.StrictMode>
   );
-}); // , 1000
+}, 1000); // , 1000
