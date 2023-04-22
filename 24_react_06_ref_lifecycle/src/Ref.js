@@ -38,7 +38,7 @@ const Ref = () => {
     return true;
   };
   const addComment = () => {
-    if (!checkInputValue()) return;
+    if (!checkInputValue()) return; // 빈값 여부 검사
 
     // 내가 쓴 코드
     // inputRef.current.focus();
