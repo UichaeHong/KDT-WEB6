@@ -1,12 +1,14 @@
 import Alphabet from "./Alphabet";
 import Event_ex from "./ex/Event_ex";
-import Practice2 from "./ex/practice2";
+import Prob2 from "./ex/practice2";
+import Prob3 from "./ex/practice3";
 
 function App() {
   return (
     <div className="App">
       {/* <Event_ex /> */}
-      <Practice2 />
+      {/* <Prob2 /> */}
+      <Prob3 />
     </div>
   );
 }
