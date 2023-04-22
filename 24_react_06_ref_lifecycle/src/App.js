@@ -1,12 +1,9 @@
-import RefSample4 from "./RefSample4";
-import Ref from "./Ref";
-import LifeCycleFunc from "./LifeCycleFunc";
-import LifeCycleClass from "./LifeCycleClass";
+import PostList from "./PostList";
 
 function App() {
   return (
     <div className="App">
-      <LifeCycleClass />
+      <PostList />
     </div>
   );
 }
