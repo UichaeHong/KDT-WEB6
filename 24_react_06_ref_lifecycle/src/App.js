@@ -7,8 +7,8 @@ function App() {
   return (
     <div className="App">
       {/* <FunctionComponent /> */}
-      {/* <FunctionEvent /> */}
-      <ClassEvent />
+      <FunctionEvent />
+      {/* <ClassEvent /> */}
     </div>
   );
 }

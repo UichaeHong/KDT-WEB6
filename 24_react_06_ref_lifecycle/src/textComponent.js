@@ -66,20 +66,59 @@
 
 // ========================================================================================
 
-import React from "react";
+// import React from "react";
 
-class ClassEvent extends React.Component {
-  Btn = () => {
-    alert("안녕");
+// class ClassEvent extends React.Component {
+//   Btn = () => {
+//     alert("안녕");
+//   };
+
+//   render() {
+//     return (
+//       <>
+//         <button onClick={this.Btn}>버튼</button>
+//       </>
+//     );
+//   }
+// }
+// import { useState } from "react";
+
+// const FunctionEvent = () => {
+//   const [message, setMessage] = useState("");
+
+//   const Btn = () => {
+//     setMessage("안녕하세요");
+//   };
+//   return (
+//     <>
+//       <h1>{message}</h1>
+//       <button onClick={() => Btn()}>버튼</button>
+//     </>
+//   );
+// };
+
+// export default FunctionEvent;
+
+// export default ClassEvent;
+import { useState } from "react";
+
+const FunctionEvent = () => {
+  const [message, setMessage] = useState("");
+
+  const onChangeMessage = (e) => {
+    setMessage(e.target.value); // 값 전달할 때 사용
   };
 
-  render() {
-    return (
-      <>
-        <button onClick={this.Btn}>버튼</button>
-      </>
-    );
-  }
-}
+  const onclick = () => {
+    alert(message); // input에서 입력한 값을 받음
+  };
 
-export default ClassEvent;
+  return (
+    <>
+      <input onChange={(e) => onChangeMessage(e)} />
+      <button onClick={onclick}>alert</button>
+    </>
+  );
+};
+
+export default FunctionEvent;
