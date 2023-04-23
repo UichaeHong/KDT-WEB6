@@ -1,9 +1,14 @@
-import PostList from "./PostList";
+import ClassComponent2 from "./textComponent";
+import FunctionComponent from "./textComponent";
+import FunctionEvent from "./textComponent";
+import ClassEvent from "./textComponent";
 
 function App() {
   return (
     <div className="App">
-      <PostList />
+      {/* <FunctionComponent /> */}
+      {/* <FunctionEvent /> */}
+      <ClassEvent />
     </div>
   );
 }
