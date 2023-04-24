@@ -100,24 +100,71 @@
 // export default FunctionEvent;
 
 // export default ClassEvent;
+// import { useState } from "react";
+
+// const FunctionEvent = () => {
+//   const [message, setMessage] = useState("");
+
+//   const onChangeMessage = (e) => {
+//     setMessage(e.target.value); // 값 전달할 때 사용
+//   };
+
+//   const onclick = () => {
+//     alert(message); // input에서 입력한 값을 받음
+//   };
+
+//   return (
+//     <>
+//       <input onChange={(e) => onChangeMessage(e)} />
+//       <button onClick={onclick}>alert</button>
+//     </>
+//   );
+// };
+
+// export default FunctionEvent;
+
+// import { useState } from "react";
+
+// const FunctionEvent = () => {
+//   const [message, setMessage] = useState("사라져라");
+//   const [display, setDisplay] = useState("block");
+
+//   const Click = () => {
+//     if (display === "none") {
+//       setMessage("사라져라");
+//       setDisplay("block");
+//     } else {
+//       setMessage("생겨라");
+//       setDisplay("none");
+//     }
+//   };
+
+//   return (
+//     <>
+//       <button onClick={Click}>{message}</button>
+//       <h1 style={{ display }}>안녕하세요</h1>
+//     </>
+//   );
+// };
+
+// export default FunctionEvent;
 import { useState } from "react";
 
 const FunctionEvent = () => {
-  const [message, setMessage] = useState("");
-
-  const onChangeMessage = (e) => {
-    setMessage(e.target.value); // 값 전달할 때 사용
-  };
-
-  const onclick = () => {
-    alert(message); // input에서 입력한 값을 받음
-  };
+  const [list, setList] = useState([
+    { id: 1, alpha: "a" },
+    { id: 2, alpha: "b" },
+    { id: 3, alpha: "c" },
+    { id: 4, alpha: "d" },
+    { id: 5, alpha: "e" },
+  ]);
 
   return (
-    <>
-      <input onChange={(e) => onChangeMessage(e)} />
-      <button onClick={onclick}>alert</button>
-    </>
+    <ol>
+      {list.map((value) => (
+        <l1 key={value.id}>{value.alpha}</l1>
+      ))}
+    </ol>
   );
 };
 
