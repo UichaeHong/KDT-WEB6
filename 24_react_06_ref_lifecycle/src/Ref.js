@@ -1,134 +1,138 @@
-import { useState, useRef } from "react";
+// 내가 작성한 실습문제 코드
 
-const Ref = () => {
-  const [inputWriter, setInputWriter] = useState("");
-  const [inputTitle, setInputTitle] = useState("");
-  const [comment, setComment] = useState([
-    {
-      id: 1,
-      writer: "민수",
-      title: "안뇽",
-    },
-    {
-      id: 2,
-      writer: "지민",
-      title: "하이하이",
-    },
-    {
-      id: 3,
-      writer: "희수",
-      title: "멋쟁이",
-    },
-  ]);
+// import { useState, useRef } from "react";
 
-  const inputRef = useRef();
-  const inputRef2 = useRef();
+// const Ref = () => {
+//   const [inputWriter, setInputWriter] = useState("");
+//   const [inputTitle, setInputTitle] = useState("");
+//   const [comment, setComment] = useState([
+//     {
+//       id: 1,
+//       writer: "민수",
+//       title: "안뇽",
+//     },
+//     {
+//       id: 2,
+//       writer: "지민",
+//       title: "하이하이",
+//     },
+//     {
+//       id: 3,
+//       writer: "희수",
+//       title: "멋쟁이",
+//     },
+//   ]);
 
-  const checkInputValue = () => {
-    // 빈값 여부 검사
-    if (inputWriter.trim().length === 0) {
-      inputRef.current.focus();
-      return false;
-    }
+//   const inputRef = useRef();
+//   const inputRef2 = useRef();
 
-    if (inputTitle.trim().length === 0) {
-      inputRef2.current.focus();
-      return false;
-    }
-    return true;
-  };
-  const addComment = () => {
-    if (!checkInputValue()) return; // 빈값 여부 검사
+//   const checkInputValue = () => {
+//     // 빈값 여부 검사
+//     if (inputWriter.trim().length === 0) {
+//       inputRef.current.focus();
+//       return false;
+//     }
 
-    // 내가 쓴 코드
-    // inputRef.current.focus();
-    // inputRef2.current.focus();
+//     if (inputTitle.trim().length === 0) {
+//       inputRef2.current.focus();
+//       return false;
+//     }
+//     return true;
+//   };
+//   const addComment = () => {
+//     if (!checkInputValue()) return; // 빈값 여부 검사
 
-    // if (inputWriter.trim().length === 0 || inputTitle.trim().length === 0) {
-    //   inputRef.current.focus();
-    //   return;
-    // }
+//     // 내가 쓴 코드
+//     // inputRef.current.focus();
+//     // inputRef2.current.focus();
 
-    // 풀이
-    // if (inputWriter.trim().length === 0) {
-    //   inputRef.current.focus();
-    //   return false;
-    // }
+//     // if (inputWriter.trim().length === 0 || inputTitle.trim().length === 0) {
+//     //   inputRef.current.focus();
+//     //   return;
+//     // }
 
-    // if (inputTitle.trim().length === 0) {
-    //   inputRef2.current.focus();
-    //   return false;
-    // }
+//     // 풀이
+//     // if (inputWriter.trim().length === 0) {
+//     //   inputRef.current.focus();
+//     //   return false;
+//     // }
 
-    console.log("추가 버튼 확인");
+//     // if (inputTitle.trim().length === 0) {
+//     //   inputRef2.current.focus();
+//     //   return false;
+//     // }
 
-    const newData = {
-      id: comment.length + 1,
-      writer: inputWriter,
-      title: inputTitle,
-    };
+//     console.log("추가 버튼 확인");
 
-    const newComment = [...comment, newData];
-    setComment(newComment);
+//     const newData = {
+//       id: comment.length + 1,
+//       writer: inputWriter,
+//       title: inputTitle,
+//     };
 
-    // TODO: input 초기화
-    setInputWriter("");
-    setInputTitle("");
-  };
+//     const newComment = [...comment, newData];
+//     setComment(newComment);
 
-  const enterKey = (e) => {
-    if (e.key === "Enter") addComment();
-  };
+//     // TODO: input 초기화
+//     setInputWriter("");
+//     setInputTitle("");
+//   };
 
-  return (
-    <div>
-      <form>
-        <label htmlFor="writer">작성자:</label>
-        <input
-          id="writer"
-          type="text"
-          name="writer"
-          value={inputWriter}
-          onChange={(e) => setInputWriter(e.target.value)}
-          ref={inputRef}
-        />
-        <label htmlFor="title">제목:</label>
-        <input
-          id="title"
-          type="text"
-          name="title"
-          value={inputTitle}
-          onChange={(e) => setInputTitle(e.target.value)}
-          onKeyDown={(e) => enterKey(e)}
-          ref={inputRef2}
-        />
-        <button type="button" onClick={addComment}>
-          작성
-        </button>
-      </form>
+//   const enterKey = (e) => {
+//     if (e.key === "Enter") addComment();
+//   };
 
-      <table border={1} style={{ margin: "30px auto", width: "500px" }}>
-        <thead>
-          <tr>
-            <th>번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-          </tr>
-        </thead>
-        <tbody>
-          {comment.map((cmt) => {
-            return (
-              <tr key={cmt.id}>
-                <td>{cmt.id}</td>
-                <td>{cmt.title}</td>
-                <td>{cmt.writer}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
-  );
-};
+//   return (
+//     <div>
+//       <form>
+//         <label htmlFor="writer">작성자:</label>
+//         <input
+//           id="writer"
+//           type="text"
+//           name="writer"
+//           value={inputWriter}
+//           onChange={(e) => setInputWriter(e.target.value)}
+//           ref={inputRef}
+//         />
+//         <label htmlFor="title">제목:</label>
+//         <input
+//           id="title"
+//           type="text"
+//           name="title"
+//           value={inputTitle}
+//           onChange={(e) => setInputTitle(e.target.value)}
+//           onKeyDown={(e) => enterKey(e)}
+//           ref={inputRef2}
+//         />
+//         <button type="button" onClick={addComment}>
+//           작성
+//         </button>
+//       </form>
 
-export default Ref;
+//       <table border={1} style={{ margin: "30px auto", width: "500px" }}>
+//         <thead>
+//           <tr>
+//             <th>번호</th>
+//             <th>제목</th>
+//             <th>작성자</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {comment.map((cmt) => {
+//             return (
+//               <tr key={cmt.id}>
+//                 <td>{cmt.id}</td>
+//                 <td>{cmt.title}</td>
+//                 <td>{cmt.writer}</td>
+//               </tr>
+//             );
+//           })}
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// };
+
+// export default Ref;
+
+// ================================================================================

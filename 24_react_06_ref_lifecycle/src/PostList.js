@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 // 임시 데이터 (backend 서버에서 받아왔다고 가정하는 데이터)
 const fakePosts = [
@@ -63,12 +64,36 @@ const PostList = () => {
   // TODO: 해당 컴포넌트가 "mount" 되었을 때
   // posts state에 fakePosts 데이터를 설정하기
   // 단, setTimeout()을 이용해 2초 후 posts state에 저장한다.
-  useEffect(() => {
-    setTimeout(() => {
-      setPosts(fakePosts);
-    }, 2000);
-  }, []);
 
+  // [before]
+  // 방법 1
+  // const getPosts = () => {
+  //   setPosts(fakePosts);
+  // };
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     getPosts();
+  //   }, 2000);
+  // }, []); // 의존성 배열
+
+  // 방법 2
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setPosts(fakePosts);
+  //   }, 2000);
+  // }, []); // 의존성 배열
+
+  // [after] axios 를 활용한 데이터 불러오기
+  const getPosts = async () => {
+    const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
+    setPosts(res.data.slice(0, 10)); // 100개 중 10개만 가져오기
+  };
+
+  useEffect(() => {
+    // [after]
+    getPosts();
+  }, []);
   return (
     <div className="PostList">
       <header>📨 Post List</header>
@@ -78,18 +103,42 @@ const PostList = () => {
       {posts.length === 0 ? (
         <h1>loading...</h1>
       ) : (
-        posts.map((obj) => (
-          <div className="PostItem">
-            <div key={obj.id}>
-              <span className="id">{obj.id}</span>
-              <span className="title">{obj.title}</span>
+        posts.map(
+          (
+            obj // map 속성을 사용할 땐 key 값 입력해야 됨
+          ) => (
+            <div className="PostItem">
+              <div key={obj.id}>
+                <span className="id">No. {obj.id}</span>
+                <span className="title">- {obj.title}</span>
+              </div>
+              <p className="body">{obj.body}</p>
             </div>
-            <p className="body">{obj.body}</p>
-          </div>
-        ))
+          )
+        )
       )}
     </div>
   );
 };
 
 export default PostList;
+
+// return 안에 있는 코드 간단하게 만들어보기
+
+// const dataLoading = () => {
+//   return <h2>Loading...</h2>;
+// };
+
+// const dataLoaded = posts.map((post) => {
+//   return <PostItem post={post} key={post.id} />;
+// });
+
+// return (
+//   <div className="PostList">
+//     <header>📨 Post List</header>
+//     {/* posts state의 길이에 따라 보여주는 정보 달리하기 (힌트: 삼항 연산자) */}
+//     {/* posts state 길이가 0 이라면 데이터를 불러오는 중이므로 loading 메세지 */}
+//     {/* posts state 길이가 0 이 아니라면 데이터를 불러왔으므로 PostItem 컴포넌트 반복 */}
+//     {posts.length > 0 ? dataLoaded : dataLoading()}
+//   </div>
+// );
