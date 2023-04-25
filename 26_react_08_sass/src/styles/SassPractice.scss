@@ -1,0 +1,45 @@
+@mixin container($size, $border) {
+  width: $size;
+  height: $size;
+  border-radius: $border;
+}
+
+@mixin animation($ani, $posi) {
+  animation: $ani 4s infinite;
+
+  @keyframes #{$ani} {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX($posi);
+    }
+    50% {
+      transform: translate($posi, $posi);
+    }
+    75% {
+      transform: translate(0, $posi);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+}
+
+.ball {
+  @include container(50px, 25px);
+
+  &.ball1 {
+    background-color: pink;
+    @include animation(ball1, 100px);
+  }
+
+  &.ball2 {
+    background-color: yellow;
+    @include animation(ball2, 200px);
+  }
+  &.ball3 {
+    background-color: green;
+    @include animation(ball3, 300px);
+  }
+}
