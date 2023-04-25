@@ -31,6 +31,8 @@ class ClassComponent extends React.Component {
 }
 export default ClassComponent;
 
+// ========================================================================================
+
 // import React from "react";
 
 // class ClassComponent extends React.Component {
@@ -70,3 +72,5 @@ export default ClassComponent;
 // }
 
 // export default ClassComponent;
+
+// import React from "react";
