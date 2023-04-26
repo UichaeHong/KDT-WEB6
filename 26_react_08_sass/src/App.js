@@ -7,8 +7,8 @@ import PostList from "./ScssPostList";
 function App() {
   return (
     <div className="App">
-      <PostList />
-      {/* <Practice /> */}
+      {/* <PostList /> */}
+      <Practice />
       {/* <Larva /> */}
       {/* <CssComponent /> */}
       {/* <SassComponent /> */}

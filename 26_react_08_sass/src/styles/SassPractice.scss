@@ -1,13 +1,18 @@
-@mixin container($size, $border) {
-  width: $size;
-  height: $size;
-  border-radius: $border;
+@mixin container($color) {
+  // width: $size;
+  // height: $size;
+  // border-radius: $border;
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  background-color: $color;
 }
 
 @mixin animation($ani, $posi) {
-  animation: $ani 4s infinite;
+  animation: $ani 2s infinite;
 
   @keyframes #{$ani} {
+    // 변수로 받아올 때 #{$변수명} 사용해야 함
     0% {
       transform: translateX(0);
     }
@@ -27,19 +32,22 @@
 }
 
 .ball {
-  @include container(50px, 25px);
+  // @include container(50px, 25px);
 
   &.ball1 {
-    background-color: pink;
+    // background-color: pink;
+    @include container(pink);
     @include animation(ball1, 100px);
   }
 
   &.ball2 {
-    background-color: yellow;
+    // background-color: yellow;
+    @include container(yellow);
     @include animation(ball2, 200px);
   }
   &.ball3 {
-    background-color: green;
+    // background-color: green;
+    @include container(green);
     @include animation(ball3, 300px);
   }
 }
