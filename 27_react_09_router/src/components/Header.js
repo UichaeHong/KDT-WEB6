@@ -22,6 +22,9 @@ const Header = () => {
         <Link to="/student/new?name=jisu" className="menu-item">
           searchParams
         </Link>
+        <Link to="/Probs" className="menu-item">
+          리스트
+        </Link>
       </div>
     </header>
   );

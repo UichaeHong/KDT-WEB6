@@ -8,9 +8,11 @@ import { useState, useEffect } from "react";
 import "./styles/Common.scss";
 import axios from "axios";
 import ProbStudent from "./pages/student/ProbStudent";
+import ProbList from "./pages/ProbList";
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [Probs, setProb] = useState([]);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -21,6 +23,16 @@ function App() {
     };
 
     getProducts();
+  }, []);
+
+  useEffect(() => {
+    const getProb = async () => {
+      const res2 = await axios.get(
+        "https://jsonplaceholder.typicode.com/photos"
+      );
+      setProb(res2.data.slice(0, 10));
+    };
+    getProb();
   }, []);
 
   return (
@@ -41,6 +53,7 @@ function App() {
           {/* 실습 */}
           <Route path="/student/:name" element={<ProbStudent />} />
 
+          <Route path="/Probs" element={<ProbList products={Probs} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
