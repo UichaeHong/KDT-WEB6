@@ -18,8 +18,11 @@
 }
 
 .MainPage {
-  background-color: aqua;
+  background-color: rgb(255, 238, 205);
   min-height: 100vh;
+  &.Dark {
+    background-color: #333;
+  }
 }
 
 .ProductDetailPage {
@@ -30,4 +33,15 @@
 .ProductPage {
   background-color: burlywood;
   min-height: 100vh;
+}
+
+.ProductItem {
+  list-style: none;
+  background-color: white;
+  width: 80vw;
+  margin: 30px auto 0 auto;
+
+  &:hover {
+    font-weight: 700;
+  }
 }
