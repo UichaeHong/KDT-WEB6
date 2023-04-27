@@ -4,9 +4,10 @@ import MainPage from "./pages/Mainpage";
 import ProductPage from "./pages/ProductPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import NotFound from "./pages/NotFound";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import "./styles/Common.scss";
 import axios from "axios";
+import ProbStudent from "./pages/student/ProbStudent";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -16,12 +17,12 @@ function App() {
       const res = await axios.get(
         "https://jsonplaceholder.typicode.com/comments"
       );
-
       setProducts(res.data.slice(0, 10));
     };
 
     getProducts();
   }, []);
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -36,6 +37,10 @@ function App() {
             path="/products/:productId"
             element={<ProductDetailPage products={products} />}
           />
+
+          {/* 실습 */}
+          <Route path="/student/:name" element={<ProbStudent />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

@@ -6,10 +6,21 @@ const Header = () => {
       <span>Router Tutorial</span>
       <div>
         <Link to="/" className="menu-item">
-          HOME
+          Home
         </Link>
         <Link to="/products" className="menu-item">
-          product
+          Product
+        </Link>
+
+        {/* 실습 */}
+        <Link to="/student/sean" className="menu-item">
+          학생
+        </Link>
+        <Link to="/student/codingon" className="menu-item">
+          코딩온
+        </Link>
+        <Link to="/student/new?name=jisu" className="menu-item">
+          searchParams
         </Link>
       </div>
     </header>
