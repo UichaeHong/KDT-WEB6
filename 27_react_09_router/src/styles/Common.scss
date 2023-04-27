@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.Header {
+  background-color: bisque;
+  height: 100px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .menu-item {
+    margin: 0 8px;
+  }
+}
+
+.MainPage {
+  background-color: aqua;
+  min-height: 100vh;
+}
+
+.ProductDetailPage {
+  background-color: bisque;
+  min-height: 100vh;
+}
+
+.ProductPage {
+  background-color: burlywood;
+  min-height: 100vh;
+}
