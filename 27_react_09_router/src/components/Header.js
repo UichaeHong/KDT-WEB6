@@ -22,6 +22,8 @@ const Header = () => {
         <Link to="/student/new?name=jisu" className="menu-item">
           searchParams
         </Link>
+
+        {/* 두번째 실습 */}
         <Link to="/Probs" className="menu-item">
           리스트
         </Link>
